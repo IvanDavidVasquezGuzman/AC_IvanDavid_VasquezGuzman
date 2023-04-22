@@ -188,12 +188,13 @@ md""" **Ejercicio** Define un parámetro interactivo `d` que controle el nivel d
 #Asignamos un valor a 'l1' a través de un deslizador interactivo que toma valores en 0.05:0.05:2.
 
 # ╔═╡ 720d025e-a264-4c59-8b0a-1e97acab7ed5
-d
+d # Imprimimos el valor de 'd' para visualizar el cambio en la cantidad de puntos tomados en cuenta para graficar.
 
 # ╔═╡ 55a1fb6a-b287-439b-b65b-03bcfff297cf
 begin
+	default(legend = true)
 	# Asignamos una variable al gráfico de la función 'seno' para poder realizarlo junto con el de la función coseno, en el gráfico de la función 'seno' pondremos el título del gráfico y de los ejes y no lo repetiremos en el gráfico de la función coseno, la función 'seno' la pondremos de color 'fuchsia', tenga su label con su nombre y que su marcador sea una estrella de 6 puntas. 
-	p = plot(sin,-π:d:π, title = "Funciones trigonométricas", xlabel = "x", ylabel = "y", color = "fuchsia", label = L"\sin(x)", marker = :star6)
+	p = plot(sin,-π:d:π, title = L"Funciones \, trigonometricas", xlabel = L"x", ylabel = L"y", color = "fuchsia", label = L"\sin(x)", marker = :star6)
 	# Gráficamos la función 'coseno' junto con la función 'seno' y la función 'coseno' la pondremos de color 'aqua', tenga su label con su nombre y que su marcador sea un hexagono; ambas funciones corren en el intervalo de -π a π y dan 'pasos' de acuerdo a los cambios en d. 
 	plot!(p, -π:d:π, cos, color = "aqua", label = L"\cos(x)",  marker = :hexagon)
 end
@@ -478,12 +479,44 @@ begin
 	hmax = (ry^2)/(2*gp) # La altura máxima.
 	x(t) = rx*t # La posición en x con respecto al tiempo.
 	hp(t) = ry*t-(gp*t^2)/2 # La posición en y (altura), con respecto al tiempo.
+	tiempo = range(0,tv, step = 0.01) # El intervalo de tiempo en el que estará la particula.
+end
+
+# ╔═╡ 7c9b2ce9-2bc4-4520-bdb0-3d87cd5e539a
+begin
+	anim3 = Plots.Animation() #Hay que definir una variable asignándole 'Plots.Animation()'.
+	
+	for t in tiempo # Iniciamos el ciclo for que realizara las gráficas
+		plot([x(t)],[hp(t)], legend = false , title = L"Tiro \, Parabolico", xlabel = L"x", ylabel = L"h", marker = true) # Gráficamos la particula en movimiento.
+		plot!(x.(range(0,t, step = 0.01)),hp.(range(0,t, step = 0.01)), legend = false , style = :dash) # Gráficamos su trayetoria con una línea punteda que sigue su movimiento.
+		# Fijamos los ejes a sus mayores valores posibles.
+		xlims!(0,x(tv)) 
+		ylims!(0,hmax)
+		 
+		Plots.frame(anim3)   #y agregar un cuadro a nuestra variable por cada gráfica generada.
+	end
+	gif(anim3, "TiroParabolico.gif", fps = 30) # Guardamos la animación.
+end
+
+# ╔═╡ 59ec3890-303c-436a-8043-8e6bc9c427ed
+md"**Ejercicio** Crea una función que tome parámetros `h`, `r`, `θ` y `t`, y haga lo descrito en el Ejercicio anterior."
+
+# ╔═╡ c3264b4d-81b1-4e0c-9205-ff818665788c
+function TiroParabolico1(rp,θp) # Definimos la función.
+	begin
+	# Declaramos las variables.
+	gp = 9.81 # La gravedad.
+	ry = rp*sin(θp) # La rapidez en el eje y.
+	rx = rp*cos(θp) # La rapidez en el eje x.
+	tv = (2*ry)/gp # El tiempo de vuelo.
+	hmax = (ry^2)/(2*gp) # La altura máxima.
+	x(t) = rx*t # La posición en x con respecto al tiempo.
+	hp(t) = ry*t-(gp*t^2)/2 # La posición en y (altura), con respecto al tiempo.
 	tiempo = 0:0.01:tv # El intervalo de tiempo en el que estará la particula.
 end
 
-# ╔═╡ b82d5ba8-80f8-4c27-a98e-5fb74cd61c27
-begin
-	anim3 = Plots.Animation() #Hay que definir una variable asignándole 'Plots.Animation()'
+	begin
+	animp = Plots.Animation() #Hay que definir una variable asignándole 'Plots.Animation()'
 	
 	for t in tiempo # Iniciamos el ciclo for que realizara las gráficas
 		plot([x(t)],[hp(t)], legend = false , title = L"Tiro Parabolico", xlabel = "x", ylabel = "h", marker = true) # Gráficamos la particula en movimiento.
@@ -493,42 +526,12 @@ begin
 		ylims!(0,hmax)
 
 		
-		Plots.frame(anim3)   #y agregar un cuadro a nuestra variable por cada gráfica generada
+		Plots.frame(animp)   #y agregar un cuadro a nuestra variable por cada gráfica generada
 	end
 
-	gif(anim3, "TiroParabolico.gif", fps = 30) # Guardamos la animación.
+	gif(animp, "TiroParabolico.gif", fps = 30) # Guardamos la animación.
 end
-
-# ╔═╡ 59ec3890-303c-436a-8043-8e6bc9c427ed
-md"**Ejercicio** Crea una función que tome parámetros `h`, `r`, `θ` y `t`, y haga lo descrito en el Ejercicio anterior."
-
-# ╔═╡ c3264b4d-81b1-4e0c-9205-ff818665788c
-function TiroParabolico(rtp,θtp) # Definimos la función.
-	# Definimos las variables.
-	gtp = 9.81
-	rytp = rtp*sin(θtp)
-	rxtp = rtp*cos(θtp)
-	tvtp = (2*rytp)/gtp
-	hmaxtp = (rytp^2)/(2*gtp)
-	xtp(ttp) = rxtp*ttp 
-	htp(ttp) = rytp*ttp-(gtp*ttp^2)/2
-	tiempotp = 0:0.01:tvtp
-
-	animtp = Plots.Animation() #Hay que definir una variable asignándole 'Plots.Animation()'
-	
-	for ttp in tiempotp # Iniciamos el ciclo for que realizara las gráficas
-		plot([xtp(ttp)],[htp(ttp)], legend = false , title = L"Tiro Parabolico", xlabel = "x", ylabel = "h", marker = true)
-		plot!(xtp.(tiempotp),htp.(tiempotp), legend = false , style = :dash)
-		xlims!(0,xtp(tvtp))
-		ylims!(0,hmaxtp)
-
-		
-		Plots.frame(animtp)   #y agregar un cuadro a nuestra variable por cada gráfica generada
 	end
-
-	gif(animtp, "TiroParabolico(Función).gif", fps = 30)
-	
-end
 
 # ╔═╡ 77aacd79-26e3-40c2-ac22-f9121aac4155
 md"""**Ejercicio** Crea una animación de cómo la superficie obtenida de la función $h(x,y) = \cos(x) + \sin(y)$ se desplaza hacia el eje vertical.
@@ -536,19 +539,31 @@ md"""**Ejercicio** Crea una animación de cómo la superficie obtenida de la fun
 
 # ╔═╡ 4e68ad0c-17ef-41f7-b9fe-8561415bb7f2
 begin
+	default(legend = false) # Quitamos las legendas para solo observar el gráfico de 'h'.
+	xe = ye = range(0, 2π, length = 100) # Definimos nuestros ejes 'x' y 'x' del ejercicio, que son iguales a 'R'.
+	zs = zeros(0, 100) # Hacemos un arreglo de ceros con extensión de 100 valores que irá almacenando valores.
+	n = 100 # Definimos una varible 'n', que será la extensión del intervalo de graficación. 
+	
 	animh = Plots.Animation() #Hay que definir una variable asignándole 'Plots.Animation()'
 		
-	for t in 0:0.05:2π
-		plot(R,R,h.(R,R), legend = false, title = L"h(x,y)", marker = true)
+	for i in range(0,2π, length = n) # Inicimos un ciclo for para realizar los multiples gráficos.
+	he(xe,ye) = cos(xe) + sin(ye + 10sin(i)) # Definimos la función 'h' de nuestro ejercicio y en el seno (que depende de 'y'), agregamos un termino '10sin(i)', que es que nos permitirá ver el movimiento de la función hacia el eje vertical.
+	l = @layout [a{0.7w} b] # Definimos un layout para poder hacer nuestros gráficos.
+	p = plot(xe, ye, he, st = [:surface, :contourf], layout = l) # Graficamos un 'contour f' (que es el gráfico de la derecha) para ver el cambio de la función en el eje 'y' como un plano.
+	fixed_x = zeros(100) # Definimos un arreglo de zeros con extensión de 0 que nos permitirá almacenar valores.
+    z = map(he, fixed_x, ye) # Definimos una variable 'z' que aplicará la función 'h' sobre 'x' y 'y'.
+    plot!(p[1], fixed_x, ye, z, line = (:black, 5, 0.2)) # Gráficamos el mapa en movimiento (gráfico de la izquierda) hacia el eje vertical.
+    vline!(p[2], [0], line = (:black, 5))
 
-		xlims!(0,2π)
-		ylims!(0,2π)
-		zlims!(-2,2)
+	# Fijamos los valores a los intervalos de 'x' y 'y' y los valores maximos y mínimos que puede tomar 'h'.
+	xlims!(0,2π)
+	ylims!(0,2π)
+	zlims!(-2,2)
 		
 		Plots.frame(animh)   #y agregar un cuadro a nuestra variable por cada gráfica generada
 	end
 
-	gif(animh, "Funcionh.gif", fps = 30)
+	gif(animh, "Funcionh.gif", fps = 30) # Guardamos el 'gif' de la función 'h'.
 end
 
 # ╔═╡ 88299b4d-2a7d-4c18-956e-c6e75473c658
@@ -1579,7 +1594,7 @@ version = "0.9.1+5"
 # ╟─abbce622-7912-40ee-8632-261b5129dcb4
 # ╟─7577805b-1d52-47e4-aa45-2652943db1cf
 # ╠═50f7f46b-081e-4b07-94af-1331b33a7c7f
-# ╠═b82d5ba8-80f8-4c27-a98e-5fb74cd61c27
+# ╠═7c9b2ce9-2bc4-4520-bdb0-3d87cd5e539a
 # ╟─59ec3890-303c-436a-8043-8e6bc9c427ed
 # ╠═c3264b4d-81b1-4e0c-9205-ff818665788c
 # ╟─77aacd79-26e3-40c2-ac22-f9121aac4155

@@ -123,10 +123,10 @@ md"**Ejercicio** Usa los _sliders siguientes_ para definir el arreglo `nariz` de
 nariz = michi[rango_renglones, rango_columnas]
 
 # ╔═╡ 9114a073-b7a2-4ef7-8dc8-d82354569ef4
-nariz2 = michi[range(223,273),range(233,293)]
+nariz2 = michi[range(223,273),range(233,293)] # Usando los slides anteriores encontramos el rango de filas y columnas en donde se encontraba la nariz del gatito, por lo que usamos ese rango.
 
 # ╔═╡ a15b8446-c1c1-4686-b0c0-b244a87b832f
-save("narizmichi.png",nariz2)
+save("narizmichi.png",nariz2) # Guardamos la imagen de la nariz del gatito como "narizmichi" en formato 'png'.
 
 # ╔═╡ 768e7b46-f7ef-44f8-b69f-f0a9fd4d797f
 md"**Ejercicio** Define una variable `arte_de_pixeles` como un arreglo bidimensional pequeño de `8x8` entradas con todas las celdas en blanco. Luego, edita las celdas de tu arreglo para hacer un poco de arte de pixeles (¡Habrá puntos extra para las imágenes más **originales**!). Pueden consultar algunas imágenes para tomar inspiración [aquí](https://duckduckgo.com/?q=pixel+art&t=h_&iax=images&ia=images)."
@@ -140,7 +140,7 @@ arte_de_pixeles = [
 RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) 
     RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) 
     RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) 
-    RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0)]
+    RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0) RGB(1.0, 1.0, 1.0)] # Definimos la variable "arte de pixeles" y le asociamos un arreglo de 8x8 entradas en blanco.
 
 # ╔═╡ d4cecdf8-c7ea-4ba7-9d27-f47f42e062ce
 arte_de_pixeles2 = [
@@ -151,10 +151,10 @@ arte_de_pixeles2 = [
     RGB(0.9862, 0.4941, 0.6745) RGB(0.9685, 0.7176, 0.8039) RGB(0.9685, 0.7176, 0.8039) RGB(0.2471, 0.3176, 0.7098) RGB(0.9685, 0.7176, 0.8039) RGB(0.2471, 0.3176, 0.7098) RGB(0.9685, 0.7176, 0.8039) RGB(0.9862, 0.4941, 0.6745)
     RGB(0.9862, 0.4941, 0.6745) RGB(0.9862, 0.4941, 0.6745) RGB(0.9608, 0.3098, 0.5373) RGB(0.9685, 0.7176, 0.8039) RGB(0.9685, 0.7176, 0.8039) RGB(0.9685, 0.7176, 0.8039) RGB(0.9608, 0.3098, 0.5373) RGB(0.1, 0.7, 1.0) 
     RGB(0.1, 0.7, 1.0) RGB(0.7725, 0.0667, 0.3843) RGB(0.9862, 0.4941, 0.6745) RGB(0.9862, 0.4941, 0.6745) RGB(0.9685, 0.7176, 0.8039) RGB(0.9685, 0.7176, 0.8039) RGB(0.7725, 0.0667, 0.3843) RGB(0.1, 0.7, 1.0) 
-    RGB(0.1, 0.7, 1.0) RGB(0.7725, 0.0667, 0.3843) RGB(0.8471, 0.1059, 0.3765) RGB(0.8471, 0.1059, 0.3765) RGB(0.1, 0.7, 1.0) RGB(0.7725, 0.0667, 0.3843) RGB(0.8471, 0.1059, 0.3765) RGB(0.1, 0.7, 1.0)]
+    RGB(0.1, 0.7, 1.0) RGB(0.7725, 0.0667, 0.3843) RGB(0.8471, 0.1059, 0.3765) RGB(0.8471, 0.1059, 0.3765) RGB(0.1, 0.7, 1.0) RGB(0.7725, 0.0667, 0.3843) RGB(0.8471, 0.1059, 0.3765) RGB(0.1, 0.7, 1.0)] # Basandonos en el arreglo anterior, cambiamos los colores de cada celda hasta formar una imagen, en este caso de "Kirby" y lo asociamos a una nueva variable llamada "arte de pixeles 2" para poder mostrarla.
 
 # ╔═╡ b918bde1-414e-4a56-a310-5da9b39eacb9
-save("Kirby.png",arte_de_pixeles2)
+save("Kirby.png",arte_de_pixeles2) # Guardamos la imagen con el nombre de "Kirby" en formato 'png' ya que nos permite hacer zoom hasta de 5000 y poder visualizar nuestra imagen a diferencia de formatos como 'pdf' que solo permiten aumento de 500.
 
 # ╔═╡ 8270b927-ac96-4e45-8c26-47995b036313
 md""" ## Guardar imágenes

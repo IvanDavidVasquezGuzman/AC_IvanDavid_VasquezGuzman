@@ -163,7 +163,7 @@ md"**Ejercicio** Graficar una versión actualizada de la gráfica de pastel ante
 
 # ╔═╡ ce50901a-195a-474f-a6b5-ea3f528a0ebf
 pie(["Windows","Mac","GNU/Linux"], [24,3,1],
-	title="Sistemas operativos utilizados por el grupo (2023-II)")
+	title="Sistemas operativos utilizados por el grupo (2023-II)") # Basandonos en el gráfico anterior, gráficamos uno nuevo con los datos obtenidos de la encuesta realizada en el semestre en curso y lo renombramos.
 
 # ╔═╡ 41cdba33-6d38-4c9a-ba36-31a929bf4e96
 md"""## Mapas de calor
