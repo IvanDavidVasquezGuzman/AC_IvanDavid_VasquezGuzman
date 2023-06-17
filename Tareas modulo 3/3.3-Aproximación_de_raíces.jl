@@ -353,9 +353,6 @@ deslizador3 = @bind n Slider(1:1:1000, default = 1)
 # ╔═╡ ccaa89d9-3f88-4300-a5d3-f7af7af916a3
 n
 
-# ╔═╡ ac93ff17-e3bd-4efd-bf93-21043d32edfe
-
-
 # ╔═╡ 9a9b1dae-b120-4baa-8780-64d10f2ac0fe
 md"""## Recursos complementarios
 
@@ -1382,7 +1379,6 @@ version = "1.4.1+0"
 # ╠═daa98aad-c309-47d0-9951-faa164bd0a7a
 # ╠═b1603442-6b17-4608-b899-df9551159419
 # ╠═ccaa89d9-3f88-4300-a5d3-f7af7af916a3
-# ╠═ac93ff17-e3bd-4efd-bf93-21043d32edfe
 # ╟─9a9b1dae-b120-4baa-8780-64d10f2ac0fe
 # ╟─2bfe89bd-cd59-4358-b0ab-e19c0ae92227
 # ╟─00000000-0000-0000-0000-000000000001
